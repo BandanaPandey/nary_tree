@@ -536,14 +536,16 @@ defmodule NaryTree do
     iex> Enum.count tree
     3
   """
-  def from_map(%{id: id, name: name} = map) do
-    tree_from_map map, new(Node.new(id, name))
+  def from_map(%{id: id, name: name, type: type, content: content} = map) do
+    tree_from_map map, new(Node.new(id, name, type, content))
   end
+
   def from_map(%{id: id, name: name, type: type} = map) do
     tree_from_map map, new(Node.new(id, name, type))
   end
-  def from_map(%{id: id, name: name, type: type, content: content} = map) do
-    tree_from_map map, new(Node.new(id, name, type, content))
+
+  def from_map(%{id: id, name: name} = map) do
+    tree_from_map map, new(Node.new(id, name))
   end
 
   defp tree_from_map(%{children: children}, tree) do
